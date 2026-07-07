@@ -56,7 +56,7 @@
   setWorld(initial === 'acting' ? 'acting' : 'voiceover', false);
 
   /* ---------- Audio players ---------- */
-  var players = document.querySelectorAll('.player[data-cat]:not(.soon)');
+  var players = document.querySelectorAll('.player[data-cat]:not(.soon):not(.player-embed)');
   var audioMap = new Map();
 
   function fmtTime(sec){

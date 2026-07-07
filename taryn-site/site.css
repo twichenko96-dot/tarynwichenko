@@ -324,6 +324,9 @@ p{margin:0;}
 }
 .player:hover{border-color:var(--accent);box-shadow:0 20px 40px -30px rgba(36,31,26,.4);}
 .player.soon{opacity:.85;}
+.player.player-embed{grid-template-columns:1fr;}
+.player-embed .player-mid{width:100%;}
+.soundcloud-embed{display:block;border-radius:8px;margin-top:.25rem;}
 
 .play-btn{
   width:3.25rem;height:3.25rem;
@@ -628,6 +631,34 @@ p{margin:0;}
 }
 @media (max-width:480px){
   .gallery-grid{grid-template-columns:repeat(2,1fr);gap:.85rem;}
+}
+
+/* ---------- resume ---------- */
+.resume-embed{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--white);
+  box-shadow:0 20px 40px -30px rgba(36,31,26,.4);
+}
+.resume-embed iframe{
+  display:block;
+  width:100%;
+  height:80vh;
+  max-height:1000px;
+  border:none;
+}
+.resume-fallback-link{
+  display:inline-block;
+  margin-top:1.25rem;
+  font-size:.9rem;
+  font-weight:600;
+  color:var(--accent-dim);
+}
+.resume-fallback-link:hover{color:var(--accent);text-decoration:underline;}
+
+@media (max-width:640px){
+  .resume-embed iframe{height:70vh;}
 }
 
 /* ============================================================
