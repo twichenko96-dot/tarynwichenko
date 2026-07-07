@@ -34,9 +34,6 @@
     if (updateHash !== false && history.replaceState) {
       history.replaceState(null, '', '#' + name);
     }
-    document.title = (name === 'acting')
-      ? 'Taryn Wichenko, Actor'
-      : 'Taryn Wichenko, Voice & Acting';
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
@@ -56,7 +53,7 @@
   setWorld(initial === 'acting' ? 'acting' : 'voiceover', false);
 
   /* ---------- Audio players ---------- */
-  var players = document.querySelectorAll('.player[data-cat]:not(.soon):not(.player-embed)');
+  var players = document.querySelectorAll('.player[data-cat]:not(.soon)');
   var audioMap = new Map();
 
   function fmtTime(sec){
