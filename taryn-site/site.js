@@ -35,8 +35,8 @@
       history.replaceState(null, '', '#' + name);
     }
     document.title = (name === 'acting')
-      ? 'Taryn Wichenko — Actor'
-      : 'Taryn Wichenko — Voice & Acting';
+      ? 'Taryn Wichenko, Actor'
+      : 'Taryn Wichenko, Voice & Acting';
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
