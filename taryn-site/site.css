@@ -725,7 +725,15 @@ footer{background:var(--ink);color:var(--paper);}
 }
 .lightbox-close:hover{background:rgba(250,246,240,.25);}
 .lightbox-close svg{width:1.3em;height:1.3em;}
+.lightbox-credit{
+  position:absolute;
+  bottom:1.25rem;right:1.5rem;
+  font-size:.78rem;
+  color:rgba(250,246,240,.65);
+  letter-spacing:.02em;
+}
 
 @media (max-width:640px){
   .lightbox-close{top:1rem;right:1rem;width:2.4rem;height:2.4rem;}
+  .lightbox-credit{bottom:.85rem;right:1rem;font-size:.7rem;}
 }

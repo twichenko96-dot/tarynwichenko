@@ -143,13 +143,17 @@
   /* ---------- Lightbox ---------- */
   var lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
-  lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close image"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg></button><img class="lightbox-img" src="" alt="">';
+  lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close image"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6"/></svg></button><img class="lightbox-img" src="" alt=""><p class="lightbox-credit"></p>';
   document.body.appendChild(lightbox);
   var lightboxImg = lightbox.querySelector('.lightbox-img');
+  var lightboxCredit = lightbox.querySelector('.lightbox-credit');
 
   function openLightbox(img){
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt || '';
+    var credit = img.dataset.credit;
+    lightboxCredit.textContent = credit || '';
+    lightboxCredit.style.display = credit ? 'block' : 'none';
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
