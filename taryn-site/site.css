@@ -420,9 +420,9 @@ p{margin:0;}
    ============================================================ */
 .about-grid{
   display:grid;
-  grid-template-columns:.85fr 1.15fr;
+  grid-template-columns:220px 1fr;
   gap:clamp(2.5rem,6vw,5rem);
-  align-items:center;
+  align-items:start;
 }
 .about-portrait .photo{
   width:100%;
@@ -441,6 +441,13 @@ p{margin:0;}
 }
 .about-body p{color:var(--ink-soft);margin-bottom:1.1rem;font-size:1.02rem;}
 .about-body p strong{color:var(--ink);font-weight:600;}
+.about-ps{
+  margin-top:.5rem;
+  padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  font-style:italic;
+  font-size:.92rem;
+}
 
 @media (max-width:900px){
   .about-grid{grid-template-columns:1fr;}
