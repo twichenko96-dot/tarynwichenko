@@ -659,7 +659,6 @@ footer{background:var(--ink);color:var(--paper);}
 }
 .footer-name{font-size:clamp(2rem,5vw,3.25rem);}
 .footer-name em{color:#e8a97e;}
-.footer-cta .eyebrow{color:#e8a97e;}
 .footer-cta a{font-size:1.15rem;font-weight:600;}
 .footer-cta a:hover{color:#e8a97e;}
 .footer-bottom{
