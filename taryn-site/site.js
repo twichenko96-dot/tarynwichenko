@@ -69,13 +69,44 @@
     player.classList.remove('playing');
   }
 
+  /* ---------- Demo play / listen-time tracking (GoatCounter events) ---------- */
+  function trackDemoEvent(path, title){
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+      window.goatcounter.count({ path: path, title: title, event: true });
+    } else {
+      window._gcQueue = window._gcQueue || [];
+      window._gcQueue.push({ path: path, title: title });
+    }
+  }
+
+  function bucketListenSeconds(sec){
+    if (sec < 10) return '0-10s';
+    if (sec < 30) return '10-30s';
+    if (sec < 60) return '30-60s';
+    if (sec < 90) return '60-90s';
+    return '90s+';
+  }
+
   players.forEach(function(player){
     var btn = player.querySelector('.play-btn');
     var wave = player.querySelector('.wave');
     var timeEl = player.querySelector('.player-time');
     var srcUrl = player.dataset.src;
     var duration = parseInt(player.dataset.dur || '0', 10);
+    var category = player.dataset.cat || 'demo';
     var audio = null;
+    var listenAccum = 0;
+    var lastTime = 0;
+
+    function flushListenTime(){
+      if (listenAccum >= 1) {
+        trackDemoEvent(
+          'demo-listen/' + category + '/' + bucketListenSeconds(listenAccum),
+          'Listened to ' + category + ' demo (~' + Math.round(listenAccum) + 's)'
+        );
+      }
+      listenAccum = 0;
+    }
 
     if (srcUrl) {
       audio = new Audio(srcUrl);
@@ -89,11 +120,20 @@
         var pct = duration ? (audio.currentTime / duration) * 100 : 0;
         wave.style.setProperty('--progress', pct + '%');
         if (timeEl) timeEl.textContent = fmtTime(audio.currentTime) + ' / ' + fmtTime(duration);
+
+        var delta = audio.currentTime - lastTime;
+        if (delta > 0 && delta < 1.5) listenAccum += delta;
+        lastTime = audio.currentTime;
       });
+      audio.addEventListener('seeking', function(){
+        lastTime = audio.currentTime;
+      });
+      audio.addEventListener('pause', flushListenTime);
       audio.addEventListener('ended', function(){
         player.classList.remove('playing');
         wave.style.setProperty('--progress', '0%');
         if (timeEl) timeEl.textContent = '0:00 / ' + fmtTime(duration);
+        trackDemoEvent('demo-complete/' + category, 'Finished ' + category + ' demo');
       });
     }
 
@@ -111,6 +151,8 @@
         audio.pause();
         player.classList.remove('playing');
       } else {
+        lastTime = audio.currentTime;
+        trackDemoEvent('demo-play/' + category, 'Played ' + category + ' demo');
         audio.play().catch(function(){ /* ignore autoplay/network errors */ });
         player.classList.add('playing');
       }
