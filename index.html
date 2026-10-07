@@ -116,11 +116,29 @@
     </div>
   </section>
 
+  <!-- STUDIO -->
+  <section class="vo-studio" id="studio" data-screen-label="VO Studio">
+    <div class="vo-studio-inner">
+      <div class="vo-studio-head reveal">
+        <p class="vo-kicker">02 Studio</p>
+        <h2 class="vo-h3">Studio &amp; <em>capabilities</em></h2>
+      </div>
+      <dl class="vo-specs reveal d1">
+        <div><dt>Home studio</dt><dd>Acoustically treated booth, broadcast-spec audio</dd></div>
+        <div><dt>Turnaround</dt><dd>Replies next business day, with a free sample read</dd></div>
+        <div><dt>Remote sessions</dt><dd>Source-Connect, Zoom, or phone patch</dd></div>
+        <div><dt>File delivery</dt><dd>WAV or MP3, edited or raw</dd></div>
+        <div><dt>Languages</dt><dd>English and Canadian French</dd></div>
+        <div><dt>Training</dt><dd>B.Mus (Hons) Voice Performance, Western</dd></div>
+      </dl>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="vo-about" id="about" data-screen-label="VO About">
     <div class="vo-about-inner">
       <div class="vo-about-quote reveal">
-        <p class="vo-kicker">02 About</p>
+        <p class="vo-kicker">03 About</p>
         <blockquote>A trained musical ear, a theatrical instinct, and genuine warmth, <em>in every read.</em></blockquote>
       </div>
       <div class="vo-about-body reveal d1">
@@ -140,10 +158,35 @@
 
   <!-- CONTACT -->
   <section class="vo-section vo-contact" id="contact" data-screen-label="VO Contact">
-    <p class="vo-kicker">03 Get in touch</p>
+    <p class="vo-kicker">04 Get in touch</p>
     <h2 class="vo-h2 vo-h2-lg">Let's <em>work</em> together</h2>
     <p class="vo-contact-lead">Send a note with your script length, usage, and timeline. Taryn replies by the next business day, with a free sample read of your script.</p>
-    <a class="vo-btn vo-btn-primary vo-btn-lg" href="mailto:tarynwichenko@gmail.com">tarynwichenko@gmail.com</a>
+
+    <form class="vo-form" id="vo-form" action="https://formsubmit.co/tarynwichenko@gmail.com" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="New voiceover enquiry from tarynwichenko.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" class="vo-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="vo-form-row">
+        <label class="vo-field">
+          <span>Name</span>
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label class="vo-field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+      </div>
+      <label class="vo-field">
+        <span>Message</span>
+        <textarea name="message" rows="5" placeholder="Script length, usage, and timeline" required></textarea>
+      </label>
+      <div class="vo-form-foot">
+        <button type="submit" class="vo-btn vo-btn-primary vo-btn-lg">Send message</button>
+        <p class="vo-form-alt">or email <a href="mailto:tarynwichenko@gmail.com">tarynwichenko@gmail.com</a></p>
+      </div>
+      <p class="vo-form-status" role="status" aria-live="polite"></p>
+    </form>
   </section>
 
   <!-- VO FOOTER -->

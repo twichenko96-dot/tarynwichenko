@@ -181,12 +181,63 @@
     });
   });
 
-  /* ---------- Contact form (front-end only) ---------- */
+  /* ---------- Contact form (sent by email via FormSubmit) ---------- */
   var form = document.getElementById('vo-form');
   if (form) {
+    var statusEl = form.querySelector('.vo-form-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    function setStatus(kind, html){
+      statusEl.className = 'vo-form-status' + (kind ? ' ' + kind : '');
+      statusEl.innerHTML = html;
+    }
+
     form.addEventListener('submit', function(e){
       e.preventDefault();
-      form.classList.add('submitted');
+
+      var valid = true;
+      form.querySelectorAll('[required]').forEach(function(field){
+        var ok = field.checkValidity() && field.value.trim() !== '';
+        field.closest('.vo-field').classList.toggle('invalid', !ok);
+        if (!ok && valid) { field.focus(); valid = false; }
+      });
+      if (!valid) {
+        setStatus('err', 'Please add your name, a valid email, and a message.');
+        return;
+      }
+
+      var data = new FormData(form);
+      data.append('_replyto', data.get('email'));
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+      setStatus('', '');
+
+      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      })
+        .then(function(res){
+          return res.json().catch(function(){ return {}; }).then(function(body){
+            if (!res.ok || body.success === false || body.success === 'false') throw new Error(body.message || 'Send failed');
+          });
+        })
+        .then(function(){
+          form.reset();
+          setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
+          trackDemoEvent('contact-form/sent', 'Contact form sent');
+        })
+        .catch(function(){
+          setStatus('err', 'Sorry, that didn\'t send. Please email <a href="mailto:tarynwichenko@gmail.com">tarynwichenko@gmail.com</a> directly.');
+        })
+        .then(function(){
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        });
+    });
+
+    form.querySelectorAll('[required]').forEach(function(field){
+      field.addEventListener('input', function(){ field.closest('.vo-field').classList.remove('invalid'); });
     });
   }
 
