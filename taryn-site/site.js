@@ -17,20 +17,20 @@
     });
   }
 
-  /* ---------- World toggle (Voiceover / Acting) ---------- */
-  var toggle = document.querySelector('.toggle');
-  var toggleBtns = document.querySelectorAll('.toggle button');
+  /* ---------- World switch (Voiceover / Acting) ---------- */
   var worlds = document.querySelectorAll('.world');
+  var worldLinks = document.querySelectorAll('[data-world-link]');
   var gotoEls = document.querySelectorAll('[data-goto]');
 
   function setWorld(name, updateHash){
     worlds.forEach(function(w){
       w.classList.toggle('active', w.id === 'world-' + name);
     });
-    toggleBtns.forEach(function(b){
-      b.setAttribute('aria-selected', b.dataset.world === name ? 'true' : 'false');
+    worldLinks.forEach(function(a){
+      if (a.dataset.worldLink === name) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
     });
-    if (toggle) toggle.setAttribute('data-active', name);
+    document.body.classList.toggle('theme-vo', name === 'voiceover');
     if (updateHash !== false && history.replaceState) {
       history.replaceState(null, '', '#' + name);
     }
@@ -39,18 +39,32 @@
     refreshReveal();
   }
 
-  toggleBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){ setWorld(btn.dataset.world); });
-  });
   gotoEls.forEach(function(el){
     el.addEventListener('click', function(e){
       var target = el.dataset.goto;
-      if (target) { e.preventDefault(); setWorld(target); window.scrollTo({top:0, behavior:'smooth'}); }
+      if (!target) return;
+      e.preventDefault();
+      setWorld(target);
+      var section = el.dataset.scroll && document.getElementById(el.dataset.scroll);
+      if (section) section.scrollIntoView({behavior:'smooth'});
+      else window.scrollTo({top:0, behavior:'smooth'});
     });
   });
 
   var initial = (location.hash || '').replace('#', '');
   setWorld(initial === 'acting' ? 'acting' : 'voiceover', false);
+
+  /* ---------- About: read the full story ---------- */
+  var moreBtn = document.querySelector('.vo-more-toggle');
+  var moreBody = document.getElementById('about-full');
+  if (moreBtn && moreBody) {
+    moreBtn.addEventListener('click', function(){
+      var open = moreBody.hidden;
+      moreBody.hidden = !open;
+      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      moreBtn.textContent = open ? 'Show less ↑' : 'Read the full story →';
+    });
+  }
 
   /* ---------- Audio players ---------- */
   var players = document.querySelectorAll('.player[data-cat]:not(.soon)');
@@ -132,7 +146,7 @@
       audio.addEventListener('ended', function(){
         player.classList.remove('playing');
         wave.style.setProperty('--progress', '0%');
-        if (timeEl) timeEl.textContent = '0:00 / ' + fmtTime(duration);
+        if (timeEl) timeEl.textContent = fmtTime(duration);
         trackDemoEvent('demo-complete/' + category, 'Finished ' + category + ' demo');
       });
     }
@@ -177,10 +191,9 @@
   }
 
   /* ---------- Footer year ---------- */
-  var copyEl = document.querySelector('.footer-copy');
-  if (copyEl) {
+  document.querySelectorAll('.footer-copy').forEach(function(copyEl){
     copyEl.textContent = copyEl.textContent.replace(/\d{4}/, String(new Date().getFullYear()));
-  }
+  });
 
   /* ---------- Lightbox ---------- */
   var lightbox = document.createElement('div');
