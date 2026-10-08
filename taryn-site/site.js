@@ -22,7 +22,7 @@
   var worldLinks = document.querySelectorAll('[data-world-link]');
   var gotoEls = document.querySelectorAll('[data-goto]');
 
-  function setWorld(name, updateHash){
+  function setWorld(name){
     worlds.forEach(function(w){
       w.classList.toggle('active', w.id === 'world-' + name);
     });
@@ -31,9 +31,6 @@
       else a.removeAttribute('aria-current');
     });
     document.body.classList.toggle('theme-vo', name === 'voiceover');
-    if (updateHash !== false && history.replaceState) {
-      history.replaceState(null, '', '#' + name);
-    }
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
@@ -51,8 +48,14 @@
     });
   });
 
-  var initial = (location.hash || '').replace('#', '');
-  setWorld(initial === 'acting' ? 'acting' : 'voiceover', false);
+  // Always open on the Voiceover main page, at the top, whatever hash or
+  // scroll position the browser remembers from a previous visit.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  setWorld('voiceover');
+  window.scrollTo(0, 0);
 
   /* ---------- About: read the full story ---------- */
   var moreBtn = document.querySelector('.vo-more-toggle');
