@@ -133,8 +133,8 @@ p{margin:0;}
    Voiceover world is active, via body.theme-vo.
    ============================================================ */
 body.theme-vo{
-  --paper:#EBD1B6;
-  --paper-dim:#F5E3CF;
+  --paper:#EDCFCB;
+  --paper-dim:#F7E5E1;
   --ink:#33221A;
   --ink-soft:#4A3326;
   --line:rgba(51,34,26,.16);
@@ -142,7 +142,7 @@ body.theme-vo{
   --accent-dim:#8A3013;
   --on-accent:#FFF6EC;
   --kicker:#6B5A2E;
-  --nav-bg:rgba(235,209,182,.9);
+  --nav-bg:rgba(237,207,203,.9);
   --serif:'Instrument Serif', Georgia, serif;
   --sans:'Manrope', system-ui, -apple-system, sans-serif;
   font-size:17px;

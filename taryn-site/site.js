@@ -22,7 +22,7 @@
   var worldLinks = document.querySelectorAll('[data-world-link]');
   var gotoEls = document.querySelectorAll('[data-goto]');
 
-  function setWorld(name, updateHash){
+  function setWorld(name){
     worlds.forEach(function(w){
       w.classList.toggle('active', w.id === 'world-' + name);
     });
@@ -31,9 +31,6 @@
       else a.removeAttribute('aria-current');
     });
     document.body.classList.toggle('theme-vo', name === 'voiceover');
-    if (updateHash !== false && history.replaceState) {
-      history.replaceState(null, '', '#' + name);
-    }
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
@@ -51,8 +48,14 @@
     });
   });
 
-  var initial = (location.hash || '').replace('#', '');
-  setWorld(initial === 'acting' ? 'acting' : 'voiceover', false);
+  // Always open on the Voiceover main page, at the top, whatever hash or
+  // scroll position the browser remembers from a previous visit.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash && history.replaceState) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+  setWorld('voiceover');
+  window.scrollTo(0, 0);
 
   /* ---------- About: read the full story ---------- */
   var moreBtn = document.querySelector('.vo-more-toggle');
@@ -181,20 +184,24 @@
     });
   });
 
-  /* ---------- Contact form (sent by email via FormSubmit) ---------- */
+  /* ---------- Contact form (sent by email via FormSubmit) ----------
+     A plain form POST: FormSubmit emails the message to Taryn, then
+     redirects back here with ?sent=1. Any notice FormSubmit needs to show
+     (such as the one-time activation step) appears on its own page. */
   var form = document.getElementById('vo-form');
   if (form) {
     var statusEl = form.querySelector('.vo-form-status');
     var submitBtn = form.querySelector('button[type="submit"]');
+    var nextInput = form.querySelector('input[name="_next"]');
 
-    function setStatus(kind, html){
+    function setStatus(kind, text){
       statusEl.className = 'vo-form-status' + (kind ? ' ' + kind : '');
-      statusEl.innerHTML = html;
+      statusEl.textContent = text;
     }
 
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
+    if (nextInput) nextInput.value = location.origin + location.pathname + '?sent=1';
 
+    form.addEventListener('submit', function(e){
       var valid = true;
       form.querySelectorAll('[required]').forEach(function(field){
         var ok = field.checkValidity() && field.value.trim() !== '';
@@ -202,44 +209,33 @@
         if (!ok && valid) { field.focus(); valid = false; }
       });
       if (!valid) {
+        e.preventDefault();
         setStatus('err', 'Please add your name, a valid email, and a message.');
         return;
       }
-
-      var data = new FormData(form);
-      data.append('_replyto', data.get('email'));
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
-      setStatus('', '');
-
-      fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      })
-        .then(function(res){
-          return res.json().catch(function(){ return {}; }).then(function(body){
-            if (!res.ok || body.success === false || body.success === 'false') throw new Error(body.message || 'Send failed');
-          });
-        })
-        .then(function(){
-          form.reset();
-          setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
-          trackDemoEvent('contact-form/sent', 'Contact form sent');
-        })
-        .catch(function(){
-          setStatus('err', 'Sorry, that didn\'t send. Please email <a href="mailto:tarynwichenko@gmail.com">tarynwichenko@gmail.com</a> directly.');
-        })
-        .then(function(){
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send message';
-        });
     });
 
     form.querySelectorAll('[required]').forEach(function(field){
       field.addEventListener('input', function(){ field.closest('.vo-field').classList.remove('invalid'); });
     });
+
+    // Back from FormSubmit after a successful send.
+    if (/[?&]sent=1\b/.test(location.search)) {
+      setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
+      trackDemoEvent('contact-form/sent', 'Contact form sent');
+      if (history.replaceState) history.replaceState(null, '', location.pathname);
+      var contact = document.getElementById('contact');
+      if (contact) setTimeout(function(){ contact.scrollIntoView(); }, 0);
+    }
   }
+
+  // Re-enable the button if the visitor comes back with the browser's Back button.
+  window.addEventListener('pageshow', function(){
+    var btn = document.querySelector('#vo-form button[type="submit"]');
+    if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
+  });
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll('.footer-copy').forEach(function(copyEl){
