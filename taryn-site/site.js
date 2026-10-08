@@ -31,10 +31,21 @@
       else a.removeAttribute('aria-current');
     });
     document.body.classList.toggle('theme-vo', name === 'voiceover');
+    document.body.classList.toggle('theme-acting', name === 'acting');
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
   }
+
+  // Links without data-goto (e.g. "About") scroll within whichever world is showing.
+  document.querySelectorAll('[data-scroll]:not([data-goto])').forEach(function(el){
+    el.addEventListener('click', function(e){
+      var section = document.querySelector('.world.active [data-section="' + el.dataset.scroll + '"]');
+      if (!section) return;
+      e.preventDefault();
+      section.scrollIntoView({behavior:'smooth'});
+    });
+  });
 
   gotoEls.forEach(function(el){
     el.addEventListener('click', function(e){

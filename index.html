@@ -22,7 +22,7 @@
   <div class="nav-links">
     <a href="#voiceover" data-goto="voiceover" data-world-link="voiceover">Voiceover</a>
     <a href="#acting" data-goto="acting" data-world-link="acting">Acting</a>
-    <a href="#about" data-goto="voiceover" data-scroll="about">About</a>
+    <a href="#about" data-scroll="about">About</a>
     <a href="mailto:tarynwichenko@gmail.com" class="nav-contact">Get in touch</a>
   </div>
 </nav>
@@ -135,7 +135,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="vo-about" id="about" data-screen-label="VO About">
+  <section class="vo-about" id="about" data-section="about" data-screen-label="VO About">
     <div class="vo-about-inner">
       <div class="vo-about-quote reveal">
         <p class="vo-kicker">03 About</p>
@@ -210,119 +210,136 @@
 <div class="world" id="world-acting" data-screen-label="Acting">
 
   <!-- HERO -->
-  <section class="actor-hero" data-screen-label="Actor Hero">
-    <div class="hero-glow"></div>
-    <div class="wrap actor-hero-grid">
-      <div>
-        <img class="photo" src="taryn-site/photos/dramatic.jpg" alt="Taryn Wichenko" style="border-radius: 0px 0px 4px 4px">
-      </div>
-      <div>
-        <div class="hero-role">
-          <span class="rule"></span>
-          <span>Actor · Toronto</span>
-        </div>
-        <h1 class="actor-hero-name">Passionate.<br>Precise.<br><em>Grounded.</em></h1>
-        <p class="hero-desc"><strong style="color:var(--ink);font-weight:600;">Taryn Wichenko</strong> is a bilingual actor based in Toronto, bringing grounded, instinctive storytelling to stage and screen. A Bachelor of Music (Honours) in Voice Performance from Western University underpins a growing body of work across musical theatre, screen, and commercial performance.</p>
-        <div class="hero-cta">
-          <a href="taryn-site/resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">
-            Download resume
-            <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-          </a>
-          <a href="mailto:tarynwichenko@gmail.com" class="btn btn-outline">Get in touch</a>
-        </div>
+  <section class="act-hero" data-screen-label="Actor Hero">
+    <div class="act-hero-photo">
+      <img src="taryn-site/photos/turtleneck.jpg" alt="Taryn in a black ribbed turtleneck, looking into the camera" width="894" height="1550">
+    </div>
+    <div class="act-hero-lead">
+      <p class="vo-kicker">Actor · Toronto</p>
+      <h1 class="act-hero-name">Passionate.<br>Precise.<br><em>Grounded.</em></h1>
+      <p class="act-hero-desc">A bilingual actor bringing grounded, instinctive storytelling to stage and screen, with a musical theatre heart.</p>
+      <div class="vo-cta">
+        <a href="#reels" class="vo-btn vo-btn-primary">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          Watch reels
+        </a>
+        <a href="taryn-site/resume.pdf" target="_blank" rel="noopener" class="vo-btn vo-btn-ghost">Download resume</a>
       </div>
     </div>
   </section>
 
+  <!-- DISCIPLINES BAND -->
+  <div class="vo-band" aria-label="Acting disciplines">
+    <div class="vo-band-inner">
+      <span>Musical Theatre</span><span class="dot" aria-hidden="true">✦</span><span>Film</span><span class="dot" aria-hidden="true">✦</span><span>Television</span><span class="dot" aria-hidden="true">✦</span><span>Commercial</span><span class="dot" aria-hidden="true">✦</span><span>Bilingual</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="act-about" id="acting-about" data-section="about" data-screen-label="Actor About">
+    <div class="act-about-body reveal">
+      <p class="vo-kicker">01 About</p>
+      <h2 class="act-about-title">Stage-trained, <em class="nowrap">camera-ready.</em></h2>
+      <p>Taryn Wichenko is a Toronto-based actor and singer who grew up performing in musicals in Winnipeg and never really stopped. She holds a Bachelor of Music (Honours) in Voice Performance from Western University and works across musical theatre, screen, and commercial performance.</p>
+      <p>With a background in classical voice and a deep love of storytelling, Taryn brings a strong musical instinct, emotional curiosity, and a grounded approach to every role.</p>
+      <dl class="act-facts">
+        <div><dt>Based in</dt><dd>Toronto, Ontario</dd></div>
+        <div><dt>Languages</dt><dd>English · Français</dd></div>
+        <div><dt>Training</dt><dd>B.Mus (Hons), Voice Performance, Western University</dd></div>
+        <div><dt>Representation</dt><dd>10 Talent Management</dd></div>
+      </dl>
+    </div>
+    <div class="act-about-photo reveal d1">
+      <img src="taryn-site/photos/blue-profile.jpg" alt="Taryn in profile in a blue smocked top, one hand in her hair" width="1020" height="1560" loading="lazy">
+    </div>
+  </section>
+
   <!-- REELS -->
-  <section class="pad-y" data-screen-label="Actor Reels">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="eyebrow"><span class="section-index">01</span> Watch</p>
-        <h2>Demo <em>reels</em></h2>
-        <p class="lead">Selected work across commercial, theatre, and screen.</p>
+  <section class="act-reels" id="reels" data-screen-label="Actor Reels">
+    <div class="vo-section">
+      <div class="vo-sec-head reveal">
+        <div>
+          <p class="vo-kicker">02 Watch</p>
+          <h2 class="vo-h2">Demo <em>reels</em></h2>
+        </div>
+        <p class="vo-sec-lead">Selected work across commercial, theatre, and screen.</p>
       </div>
-      <div class="reels-grid">
-        <a class="reel reveal" href="https://youtu.be/NyHH2RhXxtQ" target="_blank" rel="noopener">
-          <img src="https://img.youtube.com/vi/NyHH2RhXxtQ/hqdefault.jpg" alt="Commercial reel" loading="lazy">
-          <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></span>
-          <span class="reel-meta"><span class="reel-cat">Commercial</span><span class="reel-name">Commercial Reel</span></span>
+      <div class="act-reel-grid">
+        <a class="act-reel reveal" href="https://youtu.be/NyHH2RhXxtQ" target="_blank" rel="noopener">
+          <span class="act-reel-frame">
+            <img src="https://img.youtube.com/vi/NyHH2RhXxtQ/hqdefault.jpg" alt="" loading="lazy">
+            <span class="act-reel-play"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+          </span>
+          <span class="act-reel-cat">Commercial</span>
+          <span class="act-reel-name">Commercial Reel</span>
         </a>
-        <a class="reel reveal d1" href="https://youtu.be/LHdYX_XU37c" target="_blank" rel="noopener">
-          <img src="https://img.youtube.com/vi/LHdYX_XU37c/hqdefault.jpg" alt="Theatre reel" loading="lazy">
-          <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></span>
-          <span class="reel-meta"><span class="reel-cat">Theatre</span><span class="reel-name">Theatre Reel</span></span>
+        <a class="act-reel reveal d1" href="https://youtu.be/LHdYX_XU37c" target="_blank" rel="noopener">
+          <span class="act-reel-frame">
+            <img src="https://img.youtube.com/vi/LHdYX_XU37c/hqdefault.jpg" alt="" loading="lazy">
+            <span class="act-reel-play"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+          </span>
+          <span class="act-reel-cat">Theatre</span>
+          <span class="act-reel-name">Theatre Reel</span>
         </a>
-        <a class="reel reveal d2" href="https://youtu.be/p1HzmxGD_zY" target="_blank" rel="noopener">
-          <img src="https://img.youtube.com/vi/p1HzmxGD_zY/hqdefault.jpg" alt="TV and film reel" loading="lazy">
-          <span class="reel-play"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg></span>
-          <span class="reel-meta"><span class="reel-cat">TV · Film</span><span class="reel-name">Screen Reel</span></span>
+        <a class="act-reel reveal d2" href="https://youtu.be/p1HzmxGD_zY" target="_blank" rel="noopener">
+          <span class="act-reel-frame">
+            <img src="https://img.youtube.com/vi/p1HzmxGD_zY/hqdefault.jpg" alt="" loading="lazy">
+            <span class="act-reel-play"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg></span>
+          </span>
+          <span class="act-reel-cat">TV · Film</span>
+          <span class="act-reel-name">Screen Reel</span>
         </a>
       </div>
     </div>
   </section>
 
   <!-- GALLERY -->
-  <section class="gallery pad-y" data-screen-label="Actor Gallery">
-    <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="eyebrow"><span class="section-index">02</span> Gallery</p>
-        <h2>Selected <em>photos</em></h2>
-        <p class="lead">Headshots and production stills.</p>
+  <section class="vo-section gallery" data-screen-label="Actor Gallery">
+    <div class="vo-sec-head reveal">
+      <div>
+        <p class="vo-kicker">03 Gallery</p>
+        <h2 class="vo-h2">Selected <em>photos</em></h2>
       </div>
-      <div class="gallery-grid">
-        <img class="photo reveal" src="taryn-site/photos/red-dress.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
-        <img class="photo reveal d1" src="taryn-site/photos/blue.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
-        <img class="photo reveal d2" src="taryn-site/photos/olive.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
-        <img class="photo reveal d3" src="taryn-site/photos/terracotta.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
-        <img class="photo reveal" src="taryn-site/photos/still-oz-hourglass.jpg" alt="Taryn Wichenko in The Wizard of Oz" data-credit="Taryn Wichenko as Dorothy in The Wizard of Oz, Theatre TO">
-        <img class="photo reveal d1" src="taryn-site/photos/still-rockband.jpg" alt="Taryn Wichenko performing with a band" data-credit="Taryn Wichenko as Dyanne in Million Dollar Quartet, Theatre TO">
-        <img class="photo reveal d2" src="taryn-site/photos/still-chicago.jpg" alt="Taryn Wichenko in Chicago" data-credit="Taryn Wichenko as Velma Kelly in Chicago, Theatre Western">
-        <img class="photo reveal d3" src="taryn-site/photos/still-professor-marvel.jpg" alt="Taryn Wichenko in The Wizard of Oz with Professor Marvel" data-credit="Taryn Wichenko as Dorothy in The Wizard of Oz, Theatre TO">
-      </div>
+      <p class="vo-sec-lead">Headshots and production stills.</p>
+    </div>
+    <div class="gallery-grid">
+      <img class="photo reveal" src="taryn-site/photos/red-dress.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
+      <img class="photo reveal d1" src="taryn-site/photos/blue.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
+      <img class="photo reveal d2" src="taryn-site/photos/olive.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
+      <img class="photo reveal d3" src="taryn-site/photos/terracotta.jpg" alt="Taryn Wichenko" data-credit="Photo: Sam Gaetz">
+      <img class="photo reveal" src="taryn-site/photos/still-oz-hourglass.jpg" alt="Taryn Wichenko in The Wizard of Oz" data-credit="Taryn Wichenko as Dorothy in The Wizard of Oz, Theatre TO">
+      <img class="photo reveal d1" src="taryn-site/photos/still-rockband.jpg" alt="Taryn Wichenko performing with a band" data-credit="Taryn Wichenko as Dyanne in Million Dollar Quartet, Theatre TO">
+      <img class="photo reveal d2" src="taryn-site/photos/still-chicago.jpg" alt="Taryn Wichenko in Chicago" data-credit="Taryn Wichenko as Velma Kelly in Chicago, Theatre Western">
+      <img class="photo reveal d3" src="taryn-site/photos/still-professor-marvel.jpg" alt="Taryn Wichenko in The Wizard of Oz with Professor Marvel" data-credit="Taryn Wichenko as Dorothy in The Wizard of Oz, Theatre TO">
     </div>
   </section>
 
   <!-- RESUME -->
-  <section class="pad-y" data-screen-label="Actor Resume">
-    <div class="wrap">
-      <div class="sec-head reveal" style="margin-bottom:0;">
-        <p class="eyebrow"><span class="section-index">03</span> Resume</p>
-        <h2>Training &amp; <em>credits</em></h2>
-        <p class="lead" style="margin-bottom:2rem;">Full theatre, screen, and training credits, in one place.</p>
-        <a href="taryn-site/resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">
-          View resume
-          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-        </a>
-      </div>
+  <section class="vo-section act-credits" data-screen-label="Actor Resume">
+    <p class="vo-kicker">04 Resume</p>
+    <h2 class="vo-h2 vo-h2-lg">Training &amp; <em>credits</em></h2>
+    <p class="act-credits-lead">Full theatre, screen, and training credits in one place. For bookings and audition requests, contact 10 Talent Management or reach out directly.</p>
+    <div class="vo-cta act-credits-cta">
+      <a href="taryn-site/resume.pdf" target="_blank" rel="noopener" class="vo-btn vo-btn-primary">View resume ↓</a>
+      <a href="mailto:tarynwichenko@gmail.com" class="vo-btn vo-btn-ghost">Email Taryn</a>
     </div>
   </section>
+
+  <!-- ACTING FOOTER -->
+  <footer class="vo-footer">
+    <div class="vo-footer-inner">
+      <span class="footer-copy">© 2026 Taryn Wichenko · Toronto, ON</span>
+      <span class="vo-footer-links">
+        <a href="https://www.instagram.com/tarynwichenko/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/tarynwichenko/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.facebook.com/taryn.wichenko" target="_blank" rel="noopener">Facebook</a>
+      </span>
+    </div>
+  </footer>
 
 </div>
 
 </main>
-
-<!-- ════════════ FOOTER ════════════ -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <p class="footer-name">Taryn <em>Wichenko</em></p>
-      <div class="footer-cta">
-        <a href="mailto:tarynwichenko@gmail.com">tarynwichenko@gmail.com</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-links">
-        <a href="#voiceover" data-goto="voiceover">Voiceover</a>
-        <a href="#acting" data-goto="acting">Acting</a>
-        <a href="https://www.instagram.com/tarynwichenko/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.linkedin.com/in/tarynwichenko/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.facebook.com/taryn.wichenko" target="_blank" rel="noopener">Facebook</a>
-      </div>
-      <p class="footer-copy">© 2026 Taryn Wichenko · Toronto, ON</p>
-    </div>
-  </div>
-</footer>
 
 <script src="taryn-site/site.js"></script>
 
