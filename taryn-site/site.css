@@ -512,9 +512,42 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
    section heads, footer) under the body.theme-acting palette.
    ============================================================ */
 
-/* ---------- hero ---------- */
-.act-hero{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 0;}
-.act-hero-photo{flex:1 1 420px;min-width:0;max-width:560px;}
+/* ---------- hero ----------
+   Two equal columns inside a centred container, so the photo's left
+   edge (the wall Taryn leans on) lands on the centre line of the page. */
+.act-hero{
+  max-width:1280px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+}
+.act-hero-lead{
+  min-width:0;
+  padding:2rem clamp(1.5rem,4vw,3.5rem) 4rem clamp(1rem,4vw,2.5rem);
+}
+.act-hero-lead .vo-kicker{margin-bottom:1.25rem;}
+.act-hero-name{
+  font-family:var(--serif);
+  font-size:clamp(3.75rem,8.6vw,8.5rem);
+  line-height:.92;
+  letter-spacing:-.015em;
+  margin-bottom:1.25rem;
+}
+.act-hero-tagline{
+  font-family:var(--serif);
+  font-size:clamp(1.6rem,2.5vw,2.25rem);
+  line-height:1.15;
+  margin-bottom:1.5rem;
+}
+.act-hero-desc{
+  font-size:1.2rem;
+  line-height:1.55;
+  max-width:36ch;
+  color:var(--ink-soft);
+  margin-bottom:2.25rem;
+}
+.act-hero-photo{min-width:0;}
 .act-hero-photo img,
 .act-about-photo img{
   width:100%;
@@ -522,27 +555,7 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
   -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.6) 86%,rgba(0,0,0,0) 100%);
   mask-image:linear-gradient(to bottom,#000 0%,#000 72%,rgba(0,0,0,.6) 86%,rgba(0,0,0,0) 100%);
 }
-.act-hero-lead{
-  flex:1 1 480px;
-  min-width:0;
-  max-width:720px;
-  padding:0 clamp(1rem,4vw,2.5rem) 5rem;
-}
-.act-hero-lead .vo-kicker{margin-bottom:1.25rem;}
-.act-hero-name{
-  font-family:var(--serif);
-  font-size:clamp(3.5rem,7.6vw,7.25rem);
-  line-height:.92;
-  letter-spacing:-.015em;
-  margin-bottom:1.75rem;
-}
-.act-hero-desc{
-  font-size:1.2rem;
-  line-height:1.55;
-  max-width:32ch;
-  color:var(--ink-soft);
-  margin-bottom:2.25rem;
-}
+.act-hero-photo img{max-width:520px;}
 
 /* ---------- about ---------- */
 .act-about{
@@ -579,6 +592,10 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
   margin-bottom:.25rem;
 }
 .act-facts dd{margin:0;font-weight:600;color:var(--ink);}
+.act-facts a,
+.act-credits-lead a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+.act-facts a:hover,
+.act-credits-lead a:hover{color:var(--accent-dim);}
 .act-about-photo{flex:1 1 380px;min-width:0;max-width:520px;margin:0 auto;}
 
 /* ---------- reels ---------- */
@@ -637,10 +654,13 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
 .act-credits-lead{max-width:52ch;margin:0 auto 2.25rem;color:var(--ink-soft);}
 .act-credits-cta{justify-content:center;}
 
+@media (max-width:860px){
+  .act-hero{grid-template-columns:1fr;}
+  .act-hero-photo{display:flex;justify-content:center;}
+  .act-hero-photo img{max-width:380px;}
+}
 @media (max-width:640px){
-  .act-hero-photo{max-width:none;display:flex;justify-content:center;}
-  .act-hero-photo img{max-width:340px;}
-  .act-hero-lead{padding-bottom:1rem;}
+  .act-hero-lead{padding-top:1rem;padding-bottom:1rem;}
   .act-hero-desc{font-size:1.1rem;}
   .act-about-photo{max-width:340px;}
 }
