@@ -513,8 +513,9 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
    ============================================================ */
 
 /* ---------- hero ----------
-   Two equal columns inside a centred container, so the photo's left
-   edge (the wall Taryn leans on) lands on the centre line of the page. */
+   Two equal columns inside a centred container: photo on the left,
+   pushed toward the centre so it never hugs the edge of the window,
+   with the text on the right. On small screens the text comes first. */
 .act-hero{
   max-width:1280px;
   margin:0 auto;
@@ -524,7 +525,7 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
 }
 .act-hero-lead{
   min-width:0;
-  padding:2rem clamp(1.5rem,4vw,3.5rem) 4rem clamp(1rem,4vw,2.5rem);
+  padding:2rem clamp(1rem,4vw,2.5rem) 4rem clamp(1.5rem,4vw,3.5rem);
 }
 .act-hero-lead .vo-kicker{margin-bottom:1.25rem;}
 .act-hero-name{
@@ -547,7 +548,7 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
   color:var(--ink-soft);
   margin-bottom:2.25rem;
 }
-.act-hero-photo{min-width:0;}
+.act-hero-photo{min-width:0;order:-1;display:flex;justify-content:flex-end;}
 .act-hero-photo img,
 .act-about-photo img{
   width:100%;
@@ -656,7 +657,7 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
 
 @media (max-width:860px){
   .act-hero{grid-template-columns:1fr;}
-  .act-hero-photo{display:flex;justify-content:center;}
+  .act-hero-photo{order:0;justify-content:center;}
   .act-hero-photo img{max-width:380px;}
 }
 @media (max-width:640px){
