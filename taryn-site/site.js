@@ -37,16 +37,6 @@
     refreshReveal();
   }
 
-  // Links without data-goto (e.g. "About") scroll within whichever world is showing.
-  document.querySelectorAll('[data-scroll]:not([data-goto])').forEach(function(el){
-    el.addEventListener('click', function(e){
-      var section = document.querySelector('.world.active [data-section="' + el.dataset.scroll + '"]');
-      if (!section) return;
-      e.preventDefault();
-      section.scrollIntoView({behavior:'smooth'});
-    });
-  });
-
   gotoEls.forEach(function(el){
     el.addEventListener('click', function(e){
       var target = el.dataset.goto;
