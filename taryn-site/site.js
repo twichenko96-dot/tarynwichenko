@@ -185,24 +185,23 @@
     });
   });
 
-  /* ---------- Contact form (sent by email via FormSubmit) ----------
-     A plain form POST: FormSubmit emails the message to Taryn, then
-     redirects back here with ?sent=1. Any notice FormSubmit needs to show
-     (such as the one-time activation step) appears on its own page. */
+  /* ---------- Contact form (sent by email via Formspree) ----------
+     Sends in the background so visitors stay on the page. Formspree also
+     keeps a copy of every message in its dashboard. Without JavaScript the
+     form still posts normally and Formspree shows its own thank-you page. */
   var form = document.getElementById('vo-form');
   if (form) {
     var statusEl = form.querySelector('.vo-form-status');
     var submitBtn = form.querySelector('button[type="submit"]');
-    var nextInput = form.querySelector('input[name="_next"]');
+    var fallbackMsg = 'Sorry, that didn\u2019t send. Please email tarynwichenko@gmail.com directly.';
 
     function setStatus(kind, text){
       statusEl.className = 'vo-form-status' + (kind ? ' ' + kind : '');
       statusEl.textContent = text;
     }
 
-    if (nextInput) nextInput.value = location.origin + location.pathname + '?sent=1';
-
     form.addEventListener('submit', function(e){
+      e.preventDefault();
       var valid = true;
       form.querySelectorAll('[required]').forEach(function(field){
         var ok = field.checkValidity() && field.value.trim() !== '';
@@ -210,33 +209,47 @@
         if (!ok && valid) { field.focus(); valid = false; }
       });
       if (!valid) {
-        e.preventDefault();
         setStatus('err', 'Please add your name, a valid email, and a message.');
         return;
       }
+
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
+      submitBtn.textContent = 'Sending\u2026';
+      setStatus('', '');
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      })
+        .then(function(res){
+          return res.json().catch(function(){ return {}; }).then(function(body){
+            if (!res.ok) {
+              var msg = body.errors && body.errors.map(function(err){ return err.message; }).join(' ');
+              var err = new Error(msg || fallbackMsg);
+              err.fromFormspree = true;
+              throw err;
+            }
+          });
+        })
+        .then(function(){
+          form.reset();
+          setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
+          trackDemoEvent('contact-form/sent', 'Contact form sent');
+        })
+        .catch(function(err){
+          setStatus('err', err && err.fromFormspree ? err.message : fallbackMsg);
+        })
+        .then(function(){
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send message';
+        });
     });
 
     form.querySelectorAll('[required]').forEach(function(field){
       field.addEventListener('input', function(){ field.closest('.vo-field').classList.remove('invalid'); });
     });
-
-    // Back from FormSubmit after a successful send.
-    if (/[?&]sent=1\b/.test(location.search)) {
-      setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
-      trackDemoEvent('contact-form/sent', 'Contact form sent');
-      if (history.replaceState) history.replaceState(null, '', location.pathname);
-      var contact = document.getElementById('contact');
-      if (contact) setTimeout(function(){ contact.scrollIntoView(); }, 0);
-    }
   }
-
-  // Re-enable the button if the visitor comes back with the browser's Back button.
-  window.addEventListener('pageshow', function(){
-    var btn = document.querySelector('#vo-form button[type="submit"]');
-    if (btn) { btn.disabled = false; btn.textContent = 'Send message'; }
-  });
 
   /* ---------- Footer year ---------- */
   document.querySelectorAll('.footer-copy').forEach(function(copyEl){
