@@ -133,16 +133,16 @@ p{margin:0;}
    Voiceover world is active, via body.theme-vo.
    ============================================================ */
 body.theme-vo{
-  --paper:#EDCFCB;
-  --paper-dim:#F7E5E1;
-  --ink:#33221A;
-  --ink-soft:#4A3326;
-  --line:rgba(51,34,26,.16);
-  --accent:#B0401C;
-  --accent-dim:#8A3013;
-  --on-accent:#FFF6EC;
-  --kicker:#6B5A2E;
-  --nav-bg:rgba(237,207,203,.9);
+  --paper:#DED6D5;
+  --paper-dim:#EFEAE9;
+  --ink:#2E2226;
+  --ink-soft:#4D3B40;
+  --line:rgba(46,34,38,.16);
+  --accent:#8A3A55;
+  --accent-dim:#6F2E48;
+  --on-accent:#FBF7F6;
+  --kicker:#5E4D50;
+  --nav-bg:rgba(222,214,213,.9);
   --serif:'Instrument Serif', Georgia, serif;
   --sans:'Manrope', system-ui, -apple-system, sans-serif;
   font-size:17px;
@@ -192,7 +192,7 @@ body.theme-vo .site-footer{display:none;}
 .vo-btn-primary{background:var(--accent);color:var(--on-accent);}
 .vo-btn-primary:hover{background:var(--accent-dim);transform:translateY(-2px);}
 .vo-btn-ghost{border:1.5px solid var(--ink);color:var(--ink);padding:.95rem 1.7rem;}
-.vo-btn-ghost:hover{background:rgba(51,34,26,.07);}
+.vo-btn-ghost:hover{background:rgba(46,34,38,.07);}
 .vo-btn-lg{padding:1.1rem 2.1rem;font-size:1.05rem;}
 
 /* ---------- hero ---------- */
@@ -321,7 +321,7 @@ body.theme-vo .site-footer{display:none;}
   flex:1;
   height:3px;
   border-radius:2px;
-  background:rgba(51,34,26,.18);
+  background:rgba(46,34,38,.18);
   cursor:pointer;
 }
 .wave::after{
@@ -448,7 +448,7 @@ body.theme-vo .site-footer{display:none;}
 }
 .vo-field textarea{resize:vertical;min-height:8rem;}
 .vo-field input:focus,
-.vo-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(176,64,28,.15);}
+.vo-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(138,58,85,.18);}
 .vo-field.invalid input,
 .vo-field.invalid textarea{border-color:var(--accent);}
 .vo-honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
