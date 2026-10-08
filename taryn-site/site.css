@@ -138,8 +138,8 @@ body.theme-vo{
   --ink:#2E2226;
   --ink-soft:#4D3B40;
   --line:rgba(46,34,38,.16);
-  --accent:#8A3A55;
-  --accent-dim:#6F2E48;
+  --accent:#7B5040;
+  --accent-dim:#5F3D31;
   --on-accent:#FBF7F6;
   --kicker:#5E4D50;
   --nav-bg:rgba(222,214,213,.9);
@@ -448,7 +448,7 @@ body.theme-vo .site-footer{display:none;}
 }
 .vo-field textarea{resize:vertical;min-height:8rem;}
 .vo-field input:focus,
-.vo-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(138,58,85,.18);}
+.vo-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(123,80,64,.18);}
 .vo-field.invalid input,
 .vo-field.invalid textarea{border-color:var(--accent);}
 .vo-honey{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
