@@ -31,6 +31,7 @@
       else a.removeAttribute('aria-current');
     });
     document.body.classList.toggle('theme-vo', name === 'voiceover');
+    document.body.classList.toggle('theme-acting', name === 'acting');
     // pause any playing audio when switching worlds
     document.querySelectorAll('.player.playing').forEach(stopPlayer);
     refreshReveal();
