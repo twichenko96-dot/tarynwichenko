@@ -11,52 +11,9 @@
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
 
-  function refreshReveal(){
-    document.querySelectorAll('.world.active .reveal').forEach(function(el){
-      revealObserver.observe(el);
-    });
-  }
-
-  /* ---------- World switch (Voiceover / Acting) ---------- */
-  var worlds = document.querySelectorAll('.world');
-  var worldLinks = document.querySelectorAll('[data-world-link]');
-  var gotoEls = document.querySelectorAll('[data-goto]');
-
-  function setWorld(name){
-    worlds.forEach(function(w){
-      w.classList.toggle('active', w.id === 'world-' + name);
-    });
-    worldLinks.forEach(function(a){
-      if (a.dataset.worldLink === name) a.setAttribute('aria-current', 'page');
-      else a.removeAttribute('aria-current');
-    });
-    document.body.classList.toggle('theme-vo', name === 'voiceover');
-    document.body.classList.toggle('theme-acting', name === 'acting');
-    // pause any playing audio when switching worlds
-    document.querySelectorAll('.player.playing').forEach(stopPlayer);
-    refreshReveal();
-  }
-
-  gotoEls.forEach(function(el){
-    el.addEventListener('click', function(e){
-      var target = el.dataset.goto;
-      if (!target) return;
-      e.preventDefault();
-      setWorld(target);
-      var section = el.dataset.scroll && document.getElementById(el.dataset.scroll);
-      if (section) section.scrollIntoView({behavior:'smooth'});
-      else window.scrollTo({top:0, behavior:'smooth'});
-    });
+  document.querySelectorAll('.reveal').forEach(function(el){
+    revealObserver.observe(el);
   });
-
-  // Always open on the Voiceover main page, at the top, whatever hash or
-  // scroll position the browser remembers from a previous visit.
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  if (location.hash && history.replaceState) {
-    history.replaceState(null, '', location.pathname + location.search);
-  }
-  setWorld('voiceover');
-  window.scrollTo(0, 0);
 
   /* ---------- About: read the full story ---------- */
   var moreBtn = document.querySelector('.vo-more-toggle');
