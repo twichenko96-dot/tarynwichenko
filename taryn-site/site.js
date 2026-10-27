@@ -15,18 +15,6 @@
     revealObserver.observe(el);
   });
 
-  /* ---------- About: read the full story ---------- */
-  var moreBtn = document.querySelector('.vo-more-toggle');
-  var moreBody = document.getElementById('about-full');
-  if (moreBtn && moreBody) {
-    moreBtn.addEventListener('click', function(){
-      var open = moreBody.hidden;
-      moreBody.hidden = !open;
-      moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      moreBtn.textContent = open ? 'Show less ↑' : 'Read the full story →';
-    });
-  }
-
   /* ---------- Audio players ---------- */
   var players = document.querySelectorAll('.player[data-cat]:not(.soon)');
   var audioMap = new Map();
