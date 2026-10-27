@@ -445,6 +445,33 @@ body.theme-acting .site-nav{border-bottom-color:transparent;}
   font-size:clamp(2.1rem,3.6vw,3rem);
   line-height:1.12;
 }
+.vo-about-photo{
+  margin:2.75rem 0 0;
+  max-width:420px;
+  transform:rotate(-1.5deg);
+}
+.vo-about-photo img{
+  width:100%;
+  height:auto;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  object-position:40% 30%;
+  border-radius:var(--radius);
+  border:8px solid var(--paper);
+  box-shadow:0 1px 2px rgba(46,34,38,.08),0 18px 40px -18px rgba(46,34,38,.35);
+}
+.vo-about-photo figcaption{
+  margin-top:.85rem;
+  padding-left:.5rem;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--kicker);
+}
+@media (max-width:760px){
+  .vo-about-photo{margin-top:2rem;max-width:340px;transform:none;}
+}
 .vo-about-body{
   flex:1 1 420px;
   min-width:0;
