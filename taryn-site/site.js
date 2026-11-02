@@ -179,7 +179,7 @@
         })
         .then(function(){
           form.reset();
-          setStatus('ok', 'Thanks! Your message is on its way. Taryn will reply by the next business day.');
+          setStatus('ok', 'Thanks! Your message is on its way. Taryn will be in touch soon.');
           trackDemoEvent('contact-form/sent', 'Contact form sent');
         })
         .catch(function(err){
